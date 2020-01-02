@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: My PHP Application
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  phpserver:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-phpserver
+      Description: PHP Webserver
+      CodeUri: s3://mnomura3-lambda-test/098ab34f448f9345ed75fc80598a0a12
+      Runtime: provided
+      Handler: index.php
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Layers:
+      - Fn::Sub: arn:aws:lambda:${AWS::Region}:887080169480:layer:php73:3
+      Events:
+        api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
