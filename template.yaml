@@ -19,10 +19,10 @@ Resources:
         api:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /test
             Method: ANY
 
-  phptest:
+  phpsdk:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub ${AWS::StackName}-phpsdk

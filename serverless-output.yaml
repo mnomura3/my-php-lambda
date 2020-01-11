@@ -8,7 +8,7 @@ Resources:
       FunctionName:
         Fn::Sub: ${AWS::StackName}-phpserver
       Description: PHP Webserver
-      CodeUri: s3://mnomura3-lambda/c1bbdb70e59866231975feac79715dca
+      CodeUri: s3://mnomura3-lambda/44ff760811945fbefe69f9562ddf94d7
       Runtime: provided
       Handler: index.php
       MemorySize: 3008
@@ -20,5 +20,25 @@ Resources:
         api:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /test
+            Method: ANY
+  phpsdk:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-phpsdk
+      Description: PHP SDK
+      CodeUri: s3://mnomura3-lambda/44ff760811945fbefe69f9562ddf94d7
+      Runtime: provided
+      Handler: sdk.php
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Layers:
+      - Fn::Sub: arn:aws:lambda:${AWS::Region}:887080169480:layer:php73:3
+      Events:
+        api:
+          Type: Api
+          Properties:
+            Path: /sdk
             Method: ANY
