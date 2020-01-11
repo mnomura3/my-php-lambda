@@ -8,7 +8,7 @@ Resources:
       FunctionName:
         Fn::Sub: ${AWS::StackName}-phpserver
       Description: PHP Webserver
-      CodeUri: s3://mnomura3-lambda/44ff760811945fbefe69f9562ddf94d7
+      CodeUri: s3://mnomura3-lambda/854e4d7f86ddf046b5106a42eb5e5abf
       Runtime: provided
       Handler: index.php
       MemorySize: 3008
@@ -28,7 +28,7 @@ Resources:
       FunctionName:
         Fn::Sub: ${AWS::StackName}-phpsdk
       Description: PHP SDK
-      CodeUri: s3://mnomura3-lambda/44ff760811945fbefe69f9562ddf94d7
+      CodeUri: s3://mnomura3-lambda/854e4d7f86ddf046b5106a42eb5e5abf
       Runtime: provided
       Handler: sdk.php
       MemorySize: 3008

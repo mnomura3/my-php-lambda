@@ -15,8 +15,8 @@ $sdk = new Sdk([
 $dynamodb = $sdk->createDynamoDb();
 $marshaler = new Marshaler();
 
-$tableName = 'lambda_test_table';
-$user_id = $_GET["user_id"];
+$tableName = 'lambda_test';
+$user_id = 1;
 
 $key = $marshaler->marshalJson('{
         "user_id": "' . $user_id . '"
