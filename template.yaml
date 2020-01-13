@@ -19,5 +19,25 @@ Resources:
         api:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /test
+            Method: ANY
+
+  phpsdk:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-phpsdk
+      Description: PHP SDK
+      CodeUri: src/php
+      Runtime: provided
+      Handler: sdk.php
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Layers:
+        - !Sub arn:aws:lambda:${AWS::Region}:887080169480:layer:php73:3
+      Events:
+        api:
+          Type: Api
+          Properties:
+            Path: /sdk
             Method: ANY
