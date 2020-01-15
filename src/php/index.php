@@ -6,19 +6,25 @@
  * AWS Lambda上でphpを使用してJsonをResponseできるか確認
  */
 class Test {
+    private $memo = [];
     /**
      * @param $n
      * @return int
      */
     public function fib($n) {
+        global $memo;
         if ($n == 0) {
             return 0;
         } else if ($n == 1) {
             return 1;
         }
 
+        if(isset($memo[$n])) {
+            return $memo[$n];
+        }
+
         // 再帰
-        return self::fib($n-1) + self::fib($n-2);
+        return $memo[$n] = self::fib($n-1) + self::fib($n-2);
     }
 }
 
