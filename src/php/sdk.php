@@ -30,7 +30,8 @@ $params = [
 
 try {
     $result = $dynamodb->getItem($params);
-    print_r($result["Item"]);
+    $json = $marshaler->unmarshalJson($result['Item']);
+    print_r($json);
 
 } catch (DynamoDbException $e) {
     echo "Unable to get item:\n";
